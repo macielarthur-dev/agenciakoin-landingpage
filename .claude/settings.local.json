@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx claude-code-templates@latest --skill creative-design/frontend-design)",
+      "Bash(npx claude-code-templates@latest --skill business-marketing/copywriting)",
+      "Bash(unzip -o favicon_io.zip -d favicon)",
+      "WebFetch(domain:www.chababy.com.br)"
+    ]
+  }
+}
