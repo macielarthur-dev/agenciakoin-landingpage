@@ -64,6 +64,9 @@
     img {
       max-width: 100%;
       display: block;
+      pointer-events: none;
+      user-select: none;
+      -webkit-user-drag: none;
     }
 
     a {
@@ -3097,6 +3100,26 @@
       waBtn.href = `https://wa.me/${WA}?text=${msg}`;
       form.style.display = 'none';
       success.style.display = 'flex';
+    });
+  </script>
+
+  <script>
+    /* ── Proteção de imagens ───────────────────────── */
+    // Bloqueia clique direito em imagens
+    document.querySelectorAll('img').forEach(img => {
+      img.addEventListener('contextmenu', e => e.preventDefault());
+      img.addEventListener('dragstart', e => e.preventDefault());
+    });
+    // Cobre todas as imagens com overlay transparente
+    document.querySelectorAll('img').forEach(img => {
+      const wrap = img.parentElement;
+      if (getComputedStyle(wrap).position === 'static') {
+        wrap.style.position = 'relative';
+      }
+      const overlay = document.createElement('div');
+      overlay.style.cssText = 'position:absolute;inset:0;z-index:10;user-select:none;';
+      overlay.addEventListener('contextmenu', e => e.preventDefault());
+      wrap.appendChild(overlay);
     });
   </script>
 
